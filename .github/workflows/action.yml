@@ -40,9 +40,9 @@ jobs:
       - name: Its Baking Time 
         run: |
            cd openwrt
-           make -j4
+           make -j$(nproc)
 
-      - name: Dump me Directory Structure 
-        run: |
-           cd openwrt
-           tree
+      - uses: actions/upload-artifact@v2
+        with:
+          name: RaspberryPi
+          path: openwrt/bin/targets/bcm27xx/bcm2711/*.img.gz
